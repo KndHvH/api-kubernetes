@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-deploy
+  template:
+    metadata:
+      labels:
+        app: api-deploy
+    spec:
+      containers:
+      - name: api-deploy
+        resources:
+          limits:
+            cpu: 250m
+            memory: 120Mi
+        image: kndhvh/api_image:v1
+        ports:
+        - containerPort: 80
